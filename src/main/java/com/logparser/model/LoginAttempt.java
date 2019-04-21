@@ -8,22 +8,24 @@ import com.maxmind.geoip2.record.Country;
 public class LoginAttempt
 {
     //entry that denotes an attempt at using an invalid user for ssh
-    static private String INVALID_USER = "Invalid user";
+
+
 
     private String userName;
     private String ip;
     private boolean validUser;
     private int failedLogins = 0;
     private int successLogins = 0;
-    private String city;
-    private String country;
+    private String city = "";
+    private String country = "";
 
-    public LoginAttempt ( String[] data )
+    //so far only accounts for failed attempts
+    public LoginAttempt ( String[] data, boolean success )
     {
         this.userName = data[7];
         this.ip = data[9];
-        //this.validUser = success;
-        //determineLocation ();
+        this.validUser = success;
+        determineLocation ();
     }
 
     public void addToFailedLogins ( int numOfTries )
@@ -78,5 +80,10 @@ public class LoginAttempt
     public void printSummary ( )
     {
         System.out.println("User: " + userName + " | IP: " + ip + " | City, Country: " + city + ", " + country);
+    }
+
+    private void determineLocation ( )
+    {
+
     }
 }

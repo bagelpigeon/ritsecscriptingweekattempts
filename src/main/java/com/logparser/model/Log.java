@@ -1,9 +1,11 @@
 package com.logparser.model;
 import com.logparser.model.LoginAttempt;
 import java.util.HashMap;
+import java.util.Map;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class Log
 {
@@ -11,6 +13,7 @@ public class Log
     //entries in auth.log that have to do with ssh are denoted sshd
     static private String SSH_LINE_ID = "sshd";
     static private String SEPARATOR = " ";
+    static private String INVALID_USER = "Invalid user";
     final private int MAX_AUTH_TRIES;
 
     private int numOfSuccessLogins = 0;
@@ -51,10 +54,22 @@ public class Log
 
     public void parseLine(String line)
     {
-        String[] lineList = line.split(SEPARATOR);
-
-        //if new user
-        LoginAttempt loginAttempt = new LoginAttempt (lineList);
+        if (line.contains(INVALID_USER))
+        {
+            String[] data = line.split(SEPARATOR);
+            String userName = data[7];
+            if (loginAttemptsRecord.containsKey(userName))
+            {
+                LoginAttempt attempt = loginAttemptsRecord.get(userName);
+                attempt.addToFailedLogins(1);
+            }
+            else
+            {//if new user
+                LoginAttempt attempt = new LoginAttempt (data, false);
+                attempt.addToFailedLogins(1);
+                loginAttemptsRecord.put(userName, attempt);
+            }
+        }
     }
 
     public String getMostCommonLoginUser ( )
@@ -94,9 +109,16 @@ public class Log
         return numOfFailedAttempts;
     }
 
-    public void printLocationsByIP ( )
+    public void printSummaryOfAttempts ( )
     {
-
+        Iterator it = loginAttemptsRecord.entrySet().iterator();
+        while ( it.hasNext() )
+        {
+            Map.Entry pair = (Map.Entry)it.next();
+            LoginAttempt record = (LoginAttempt) pair.getValue();
+            record.printSummary();
+            it.remove();
+        }
     }
 
 }
