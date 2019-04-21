@@ -1,0 +1,73 @@
+import com.maxmind.geoip2.DatabaseReader;
+import com.maxmind.geoip2.exception.GeoIp2Exception;
+import com.maxmind.geoip2.model.CityResponse;
+import com.maxmind.geoip2.record.City;
+import com.maxmind.geoip2.record.Country;
+
+public class LoginAttempt
+{
+    private String userName;
+    private String ip;
+    private boolean validUser;
+    private int failedLogins = 0;
+    private int successLogins = 0;
+    private String city;
+    private String country;
+
+    public LoginAttempt ( String userName, String ip, boolean success )
+    {
+        this.userName = userName;
+        this.ip = ip;
+        this.validUser = success;
+        determineLocation ();
+    }
+
+    public void addToFailedLogins ( int numOfTries )
+    {
+        failedLogins += numOfTries;
+    }
+
+    public void addToSuccessLogins ( )
+    {
+        successLogins += 1;
+    }
+
+    public boolean isValidUser( )
+    {
+        return validUser;
+    }
+
+    public int getFailedLogins( )
+    {
+        return failedLogins;
+    }
+
+    public int getSuccessLogins( )
+    {
+        return successLogins;
+    }
+
+    public String getIp( )
+    {
+        return ip;
+    }
+
+    public String getUserName( )
+    {
+        return userName;
+    }
+
+    public boolean compareUserName ( String userName )
+    {
+        if ( this.userName.equals( userName ) )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public int totalAttemptsAtLogin ( )
+    {
+        return failedLogins + successLogins;
+    }
+}
