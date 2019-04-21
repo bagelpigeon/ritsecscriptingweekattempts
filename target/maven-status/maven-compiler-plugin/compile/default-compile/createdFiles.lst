@@ -1,2 +1,3 @@
-com\logscraper\LogScraper.class
-com\logscraper\model\Log.class
+com\logparser\LogParser.class
+com\logparser\model\LoginAttempt.class
+com\logparser\model\Log.class

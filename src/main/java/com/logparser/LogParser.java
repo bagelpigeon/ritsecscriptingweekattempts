@@ -1,15 +1,15 @@
-package com.logscraper;
-import com.logscraper.model.Log;
+package com.logparser;
+import com.logparser.model.Log;
 
 /**
  * Hello world!
  *
  */
-public class LogScraper
+public class LogParser
 {
     public static void main( String[] args )
     {
-        Log newLog = new Log ( "auth.log" );
+        Log newLog = new Log ( "auth.log", 6 );
         System.out.println("Hello");
     }
 }

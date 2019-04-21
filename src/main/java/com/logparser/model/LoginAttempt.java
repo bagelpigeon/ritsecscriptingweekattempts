@@ -1,3 +1,4 @@
+package com.logparser.model;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
@@ -6,6 +7,9 @@ import com.maxmind.geoip2.record.Country;
 
 public class LoginAttempt
 {
+    //entry that denotes an attempt at using an invalid user for ssh
+    static private String INVALID_USER = "Invalid user";
+
     private String userName;
     private String ip;
     private boolean validUser;
@@ -14,12 +18,12 @@ public class LoginAttempt
     private String city;
     private String country;
 
-    public LoginAttempt ( String userName, String ip, boolean success )
+    public LoginAttempt ( String[] data )
     {
-        this.userName = userName;
-        this.ip = ip;
-        this.validUser = success;
-        determineLocation ();
+        this.userName = data[7];
+        this.ip = data[9];
+        //this.validUser = success;
+        //determineLocation ();
     }
 
     public void addToFailedLogins ( int numOfTries )
@@ -69,5 +73,10 @@ public class LoginAttempt
     public int totalAttemptsAtLogin ( )
     {
         return failedLogins + successLogins;
+    }
+
+    public void printSummary ( )
+    {
+        System.out.println("User: " + userName + " | IP: " + ip + " | City, Country: " + city + ", " + country);
     }
 }
