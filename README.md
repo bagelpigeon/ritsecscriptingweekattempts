@@ -1,2 +1,2 @@
-# ritsecscriptingweekattempts
-Ritsec's scripting week challenge attempts
+# ritsecscriptingweek 
+attempt at medium 3: auth.log ssh parser
