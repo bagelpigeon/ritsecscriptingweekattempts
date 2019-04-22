@@ -12,36 +12,62 @@ public class LoginAttempt
 {
     //entry that denotes an attempt at using an invalid user for ssh
     private String userName;
-    private ArrayList<String> ipList = new ArrayList<String>();
+    private ArrayList<IPAddressLocation> ipList = new ArrayList<IPAddressLocation>();
     private DatabaseReader cityReader;
-    private String ip;
     private boolean validUser;
     private int failedLogins = 0;
     private int successLogins = 0;
-    private String city = "";
-    private String country = "";
 
     //might needs a special case for root due to people attempting to pair it with
     // random passwords
     //so far only accounts for failed attempts
-    public LoginAttempt ( String userName, String ip, boolean success, DatabaseReader city )
+    public LoginAttempt ( String userName, boolean success, DatabaseReader city )
     {
         this.userName = userName;
         //needs to be turned into list later on
-        //this.ipList.add(ip);
-        this.ip = ip;
-        this.validUser = success;
         cityReader = city;
-        determineLocation (ip);
+        this.validUser = success;
     }
 
-    public void addToFailedLogins ( int numOfTries )
+    public void addNewIP ( String ip, int numOfTries, boolean success )
     {
+        IPAddressLocation ipObj = new IPAddressLocation(ip, cityReader);
+        if (!this.ipList.contains(ipObj))
+        {
+            this.ipList.add(ipObj);
+        }
+        if (success)
+        {
+            addToSuccessLogins(numOfTries, ip);
+        }
+        else
+        {
+            addToFailedLogins(numOfTries, ip);
+        }
+
+    }
+
+    public void addToFailedLogins ( int numOfTries, String ip )
+    {
+        for ( int i = 0; i < ipList.size(); i++)
+        {
+            if (ipList.get(i).getIp().equals(ip))
+            {
+                ipList.get(i).addToFailedLogins(numOfTries);
+            }
+        }
         failedLogins += numOfTries;
     }
 
-    public void addToSuccessLogins ( )
+    public void addToSuccessLogins ( int numOfTries, String ip )
     {
+        for ( int i = 0; i < ipList.size(); i++)
+        {
+            if (ipList.get(i).getIp().equals(ip))
+            {
+                ipList.get(i).addToSuccessLogins();
+            }
+        }
         successLogins += 1;
     }
 
@@ -60,7 +86,7 @@ public class LoginAttempt
         return successLogins;
     }
 
-    public ArrayList<String> getIps( )
+    public ArrayList<IPAddressLocation> getIps( )
     {
         return ipList;
     }
@@ -86,47 +112,15 @@ public class LoginAttempt
 
     public void printSummary ( )
     {
-        String ipList = new String("");
-        System.out.println("User: " + userName + " | IP: " + ip + " | Location: " + city + ", " + country
-        + " | Num of Failures:" + failedLogins + " | Num of Successes: " + successLogins);
+        System.out.println("User: " + userName + " | Num of Failures:" +
+                failedLogins + " | Num of Successes: " + successLogins);
+        //print of list of ips that accessed this username with their respective
+        //info
+        for ( int i = 0; i < ipList.size(); i++)
+        {
+            ipList.get(i).printSummary();
+        }
     }
 
-    private void determineLocation ( String ip )
-    {
-        try
-        {
-            InetAddress ipAddress = InetAddress.getByName(ip);
-            CityResponse response = cityReader.city(ipAddress);
-            String cityName = response.getCity().getName();
-            if (cityName == null)
-            {
-                city = "unknown";
-            }
-            else
-            {
-                city = cityName;
-            }
-            String countryName = response.getCountry().getName();
-            if (country == null)
-            {
-                country = "unknown";
-            }
-            else
-            {
-                country = countryName;
-            }
 
-        }
-        catch (java.net.UnknownHostException e)
-        {
-            System.out.println("Error with finding ip. May be due to a corrupted line.");
-        }
-        catch (Exception e)
-        {
-            //e.printStackTrace();
-            System.out.println("Error with getting response from database or ip is not in database.");
-        }
-
-
-    }
 }

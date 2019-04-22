@@ -1,3 +1,4 @@
 com\logparser\model\Log.class
 com\logparser\LogParser.class
+com\logparser\model\IPAddressLocation.class
 com\logparser\model\LoginAttempt.class

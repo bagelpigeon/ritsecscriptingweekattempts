@@ -70,12 +70,12 @@ public class Log
             if (loginAttemptsRecord.containsKey(userName))
             {
                 LoginAttempt attempt = loginAttemptsRecord.get(userName);
-                attempt.addToFailedLogins(1);
+                attempt.addNewIP(ip, 1, false);
             }
             else
             {//if new user
-                LoginAttempt attempt = new LoginAttempt (userName, ip, false, cityReader);
-                attempt.addToFailedLogins(1);
+                LoginAttempt attempt = new LoginAttempt (userName, false, cityReader);
+                attempt.addNewIP(ip, 1, false);
                 loginAttemptsRecord.put(userName, attempt);
             }
         }
@@ -86,12 +86,12 @@ public class Log
             if (loginAttemptsRecord.containsKey(userName))
             {
                 LoginAttempt attempt = loginAttemptsRecord.get(userName);
-                attempt.addToFailedLogins(MAX_AUTH_TRIES);
+                attempt.addNewIP(ip, MAX_AUTH_TRIES, false);
             }
             else
             {//if new user
-                LoginAttempt attempt = new LoginAttempt (userName, ip, false, cityReader);
-                attempt.addToFailedLogins(MAX_AUTH_TRIES);
+                LoginAttempt attempt = new LoginAttempt (userName, false, cityReader);
+                attempt.addNewIP(ip, MAX_AUTH_TRIES, false);
                 loginAttemptsRecord.put(userName, attempt);
             }
         }
@@ -108,7 +108,6 @@ public class Log
 
     public int getNumOfSuccessLogins ( )
     {
-        //iterate userlist + add all attempts
         return numOfSuccessLogins;
     }
 
