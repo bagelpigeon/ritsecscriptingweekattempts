@@ -1,6 +1,77 @@
-Jan 17 08:33:01 ip-172-31-1-163 sshd[13814]: Invalid user tf2 from 51.15.5.175
-Jan 23 15:25:44 ip-172-31-1-163 sshd[28546]: Invalid user tf2 from 51.15.5.7
-Jan 23 19:45:37 ip-172-31-1-163 sshd[29446]: Invalid user tf2 from 51.15.5.7
-Jan 26 07:14:17 ip-172-31-1-163 sshd[14457]: Invalid user tf2 from 62.4.31.100
-Jan 26 10:02:55 ip-172-31-1-163 sshd[14617]: Invalid user tf2 from 163.172.213.33
-Jan 26 12:27:43 ip-172-31-1-163 sshd[14709]: Invalid user tf2 from 62.4.31.100
+Jan 11 01:54:31 ip-172-31-1-163 sshd[1106]: Server listening on 0.0.0.0 port 22.
+Jan 11 01:54:31 ip-172-31-1-163 sshd[1106]: Server listening on :: port 22.
+Jan 11 01:55:59 ip-172-31-1-163 sshd[1301]: Connection closed by 127.213.25.139 [preauth]
+Jan 11 01:56:37 ip-172-31-1-163 sshd[1303]: Accepted publickey for ubuntu from 127.213.25.139 port 65087 ssh2: RSA 0a:78:92:3c:c8:27:13:d3:f7:ee:d5:ac:75:45:31:5c
+Jan 11 01:56:37 ip-172-31-1-163 sshd[1303]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Jan 11 01:58:12 ip-172-31-1-163 sudo:   ubuntu : TTY=pts/0 ; PWD=/var/log ; USER=root ; COMMAND=/usr/bin/apt-get update
+Jan 11 01:58:12 ip-172-31-1-163 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Jan 11 01:58:18 ip-172-31-1-163 sudo: pam_unix(sudo:session): session closed for user root
+Jan 11 01:59:05 ip-172-31-1-163 sudo:   ubuntu : TTY=pts/0 ; PWD=/var/log ; USER=root ; COMMAND=/usr/bin/apt-get install unattended-upgrades
+Jan 11 01:59:05 ip-172-31-1-163 sudo: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Jan 11 01:59:05 ip-172-31-1-163 sudo: pam_unix(sudo:session): session closed for user root
+Jan 11 02:00:11 ip-172-31-1-163 sshd[1383]: Received disconnect from 127.213.25.139: 11: disconnected by user
+Jan 11 02:00:11 ip-172-31-1-163 sshd[1303]: pam_unix(sshd:session): session closed for user ubuntu
+Jan 11 02:13:44 ip-172-31-1-163 sshd[1473]: error: maximum authentication attempts exceeded for root from 183.152.3.142 port 57902 ssh2 [preauth]
+Jan 11 02:13:44 ip-172-31-1-163 sshd[1473]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 02:17:01 ip-172-31-1-163 CRON[1475]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 11 02:17:01 ip-172-31-1-163 CRON[1475]: pam_unix(cron:session): session closed for user root
+Jan 11 02:29:34 ip-172-31-1-163 sshd[1489]: reverse mapping checking getaddrinfo for 201-254-132-124.speedy.com.ar [201.254.132.124] failed - POSSIBLE BREAK-IN ATTEMPT!
+Jan 11 02:29:35 ip-172-31-1-163 sshd[1490]: reverse mapping checking getaddrinfo for 201-254-132-124.speedy.com.ar [201.254.132.124] failed - POSSIBLE BREAK-IN ATTEMPT!
+Jan 11 02:29:43 ip-172-31-1-163 sshd[1489]: error: maximum authentication attempts exceeded for root from 201.254.132.124 port 54484 ssh2 [preauth]
+Jan 11 02:29:43 ip-172-31-1-163 sshd[1489]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 02:29:43 ip-172-31-1-163 sshd[1490]: error: maximum authentication attempts exceeded for invalid user admin from 201.254.132.124 port 54487 ssh2 [preauth]
+Jan 11 02:29:43 ip-172-31-1-163 sshd[1490]: Disconnecting: Too many authentication failures for admin [preauth]
+Jan 11 02:34:13 ip-172-31-1-163 sshd[1493]: error: maximum authentication attempts exceeded for root from 87.175.123.232 port 34611 ssh2 [preauth]
+Jan 11 02:34:13 ip-172-31-1-163 sshd[1493]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 02:48:28 ip-172-31-1-163 sshd[1495]: error: maximum authentication attempts exceeded for root from 140.246.215.144 port 37533 ssh2 [preauth]
+Jan 11 02:48:28 ip-172-31-1-163 sshd[1495]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 03:16:51 ip-172-31-1-163 sshd[1508]: error: maximum authentication attempts exceeded for invalid user admin from 5.138.146.72 port 41261 ssh2 [preauth]
+Jan 11 03:16:51 ip-172-31-1-163 sshd[1508]: Disconnecting: Too many authentication failures for admin [preauth]
+Jan 11 03:17:01 ip-172-31-1-163 CRON[1510]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 11 03:17:01 ip-172-31-1-163 CRON[1510]: pam_unix(cron:session): session closed for user root
+Jan 11 03:29:20 ip-172-31-1-163 sshd[1524]: error: maximum authentication attempts exceeded for root from 182.38.244.134 port 57333 ssh2 [preauth]
+Jan 11 03:29:20 ip-172-31-1-163 sshd[1524]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 03:47:59 ip-172-31-1-163 sshd[1537]: Received disconnect from 122.194.229.3: 11:  [preauth]
+Jan 11 04:17:01 ip-172-31-1-163 CRON[1550]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 11 04:17:01 ip-172-31-1-163 CRON[1550]: pam_unix(cron:session): session closed for user root
+Jan 11 04:29:01 ip-172-31-1-163 sshd[1555]: reverse mapping checking getaddrinfo for mail.servername.info [47.88.6.61] failed - POSSIBLE BREAK-IN ATTEMPT!
+Jan 11 04:29:01 ip-172-31-1-163 sshd[1555]: Received disconnect from 47.88.6.61: 11: Bye Bye [preauth]
+Jan 11 04:29:01 ip-172-31-1-163 sshd[1557]: reverse mapping checking getaddrinfo for mail.servername.info [47.88.6.61] failed - POSSIBLE BREAK-IN ATTEMPT!
+Jan 11 04:29:02 ip-172-31-1-163 sshd[1557]: Received disconnect from 47.88.6.61: 11: Bye Bye [preauth]
+Jan 11 04:29:02 ip-172-31-1-163 sshd[1559]: reverse mapping checking getaddrinfo for mail.servername.info [47.88.6.61] failed - POSSIBLE BREAK-IN ATTEMPT!
+Jan 11 04:29:03 ip-172-31-1-163 sshd[1559]: Received disconnect from 47.88.6.61: 11: Bye Bye [preauth]
+Jan 11 05:07:44 ip-172-31-1-163 sshd[1585]: reverse mapping checking getaddrinfo for 88.247.159.51.dynamic.ttnet.com.tr [88.247.159.51] failed - POSSIBLE BREAK-IN ATTEMPT!
+Jan 11 05:07:45 ip-172-31-1-163 sshd[1585]: error: maximum authentication attempts exceeded for root from 88.247.159.51 port 35062 ssh2 [preauth]
+Jan 11 05:07:45 ip-172-31-1-163 sshd[1585]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 05:09:43 ip-172-31-1-163 sshd[1587]: Received disconnect from 112.85.42.46: 11:  [preauth]
+Jan 11 05:17:01 ip-172-31-1-163 CRON[1589]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 11 05:17:01 ip-172-31-1-163 CRON[1589]: pam_unix(cron:session): session closed for user root
+Jan 11 05:41:13 ip-172-31-1-163 sshd[1603]: error: maximum authentication attempts exceeded for root from 60.13.63.73 port 12875 ssh2 [preauth]
+Jan 11 05:41:13 ip-172-31-1-163 sshd[1603]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 05:41:30 ip-172-31-1-163 sshd[1605]: error: maximum authentication attempts exceeded for root from 175.136.211.62 port 45806 ssh2 [preauth]
+Jan 11 05:41:30 ip-172-31-1-163 sshd[1605]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 06:06:50 ip-172-31-1-163 sshd[1618]: error: maximum authentication attempts exceeded for root from 113.128.68.178 port 28570 ssh2 [preauth]
+Jan 11 06:06:50 ip-172-31-1-163 sshd[1618]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 06:09:09 ip-172-31-1-163 sshd[1620]: error: maximum authentication attempts exceeded for root from 112.192.249.45 port 34393 ssh2 [preauth]
+Jan 11 06:09:09 ip-172-31-1-163 sshd[1620]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 06:17:01 ip-172-31-1-163 CRON[1622]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 11 06:17:01 ip-172-31-1-163 CRON[1622]: pam_unix(cron:session): session closed for user root
+Jan 11 06:20:04 ip-172-31-1-163 sshd[1636]: error: maximum authentication attempts exceeded for root from 213.5.27.49 port 48360 ssh2 [preauth]
+Jan 11 06:20:04 ip-172-31-1-163 sshd[1636]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 06:20:09 ip-172-31-1-163 sshd[1638]: error: maximum authentication attempts exceeded for root from 94.22.134.24 port 47883 ssh2 [preauth]
+Jan 11 06:20:09 ip-172-31-1-163 sshd[1638]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 06:25:01 ip-172-31-1-163 CRON[1640]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 11 06:36:30 ip-172-31-1-163 sshd[1691]: error: maximum authentication attempts exceeded for invalid user admin from 43.245.14.114 port 54262 ssh2 [preauth]
+Jan 11 06:36:30 ip-172-31-1-163 sshd[1691]: Disconnecting: Too many authentication failures for admin [preauth]
+Jan 11 06:47:42 ip-172-31-1-163 CRON[1640]: pam_unix(cron:session): session closed for user root
+Jan 11 06:52:29 ip-172-31-1-163 sshd[2194]: reverse mapping checking getaddrinfo for 190-173-190-124.speedy.com.ar [190.173.190.124] failed - POSSIBLE BREAK-IN ATTEMPT!
+Jan 11 06:52:30 ip-172-31-1-163 sshd[2194]: error: maximum authentication attempts exceeded for root from 190.173.190.124 port 40679 ssh2 [preauth]
+Jan 11 06:52:30 ip-172-31-1-163 sshd[2194]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 06:54:27 ip-172-31-1-163 sshd[2196]: reverse mapping checking getaddrinfo for 252.92.94.125.broad.sz.gd.dynamic.163data.com.cn [125.94.92.252] failed - POSSIBLE BREAK-IN ATTEMPT!
+Jan 11 06:54:29 ip-172-31-1-163 sshd[2196]: error: maximum authentication attempts exceeded for root from 125.94.92.252 port 36699 ssh2 [preauth]
+Jan 11 06:54:29 ip-172-31-1-163 sshd[2196]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 07:16:50 ip-172-31-1-163 sshd[2209]: error: maximum authentication attempts exceeded for root from 94.129.9.210 port 53442 ssh2 [preauth]
+Jan 11 07:16:50 ip-172-31-1-163 sshd[2209]: Disconnecting: Too many authentication failures for root [preauth]
+Jan 11 07:17:01 ip-172-31-1-163 CRON[2211]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jan 11 07:17:01 ip-172-31-1-163 CRON[2211]: pam_unix(cron:session): session closed for user root
+Jan 11 07:45:21 ip-172-31-1-163 sshd[2225]: error: maximum authentication attempts exceeded for root from 122.241.211.185 port 58756 ssh2 [preauth]

@@ -100,12 +100,12 @@ public class IPAddressLocation
         }
         catch (java.net.UnknownHostException e)
         {
-            System.out.println("Error with finding ip. May be due to an incorrectly formatted line.");
+            System.out.println("Error with finding ip: " + ip + ". May be due to an incorrectly formatted line.");
         }
         catch (Exception e)
         {
             //e.printStackTrace();
-            System.out.println("Error with getting response from database or ip is not in database.");
+            System.out.println("Ip: " + ip + " is not in database.");
         }
     }
 

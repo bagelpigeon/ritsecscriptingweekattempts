@@ -105,7 +105,7 @@ public class LoginAttempt
         return false;
     }
 
-    public int totalAttemptsAtLogin ( )
+    public int getTotalAttempts( )
     {
         return failedLogins + successLogins;
     }

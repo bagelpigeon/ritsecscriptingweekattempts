@@ -20,7 +20,7 @@ public class Log
     static private String SEPARATOR = " ";
     static private String INVALID_USER = "Invalid user";
     static private String MAX_ATTEMPTS_EXCEEDED = "maximum authentication attempts";
-    final private int MAX_AUTH_TRIES;
+    final private int MAX_AUTH_TRIES = 6;
 
     private int numOfSuccessLogins = 0;
     private int numOfFailedAttempts = 0;
@@ -33,9 +33,10 @@ public class Log
     {
         createDatabases();
         this.parseFile(fileName);
-        this.MAX_AUTH_TRIES = maxAuthTries;
+        //this.MAX_AUTH_TRIES = maxAuthTries;
     }
 
+    //TODO: fix extra counts for invalid users that exceed max auth
     public void parseFile ( String fileName )
     {
         BufferedReader reader;
@@ -66,7 +67,15 @@ public class Log
         if (line.contains(INVALID_USER))
         {
             String userName = data[7];
-            String ip = data[9];
+            String ip = data[9].trim();
+
+            //fix for weird attempts where users try to authenticate with
+            //a user and password on the same line
+            if ( ip.equals("from"))
+            {
+                userName = data[7] + data[8];
+                ip = data[10];
+            }
             if (loginAttemptsRecord.containsKey(userName))
             {
                 LoginAttempt attempt = loginAttemptsRecord.get(userName);
@@ -81,8 +90,33 @@ public class Log
         }
         else if (line.contains(MAX_ATTEMPTS_EXCEEDED))
         {
-            String userName = data[11];
-            String ip = data[13];
+            String userName;
+            String ip;
+
+            //check if its an invalid user
+            //TODO: fix up the indexes to be constants
+            //Turn into function too
+            if (line.contains("invalid"))
+            {
+                userName = data[13];
+                ip = data[15];
+                if ( ip.equals("from"))
+                {
+                    userName = data[11] + data[12];
+                    ip = data[16];
+                }
+            }
+            else
+            {
+                userName = data[11];
+                ip = data[13];
+                if ( ip.equals("from"))
+                {
+                    userName = data[11] + data[12];
+                    ip = data[14];
+                }
+            }
+
             if (loginAttemptsRecord.containsKey(userName))
             {
                 LoginAttempt attempt = loginAttemptsRecord.get(userName);
@@ -99,9 +133,17 @@ public class Log
 
     public String getMostCommonLoginUser ( )
     {
-        if (mostCommonLoginName.equals(""))
+        int maxNumOfLoginAttempts = -1;
+        Iterator it = loginAttemptsRecord.entrySet().iterator();
+        while ( it.hasNext() )
         {
-           return "No logins were attempted.";
+            Map.Entry pair = (Map.Entry)it.next();
+            LoginAttempt record = (LoginAttempt) pair.getValue();
+            if (record.getTotalAttempts()> maxNumOfLoginAttempts)
+            {
+                maxNumOfLoginAttempts = record.getTotalAttempts();
+                mostCommonLoginName = record.getUserName();
+            }
         }
         return mostCommonLoginName;
     }
@@ -141,7 +183,6 @@ public class Log
             Map.Entry pair = (Map.Entry)it.next();
             LoginAttempt record = (LoginAttempt) pair.getValue();
             record.printSummary();
-            it.remove();
         }
     }
 

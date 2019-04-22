@@ -9,7 +9,8 @@ public class LogParser
 {
     public static void main( String[] args )
     {
-        Log newLog = new Log ( "auth2.log", 6 );
+        Log newLog = new Log ( "auth.log", 6 );
         newLog.printSummaryOfAttempts();
+        System.out.println ("The most common user was: " + newLog.getMostCommonLoginUser());
     }
 }
