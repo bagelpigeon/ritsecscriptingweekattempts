@@ -20,11 +20,11 @@ public class Log
     static private String SEPARATOR = " ";
     static private String INVALID_USER = "Invalid user";
     static private String MAX_ATTEMPTS_EXCEEDED = "maximum authentication attempts";
-    final private int MAX_AUTH_TRIES = 6;
+    static private String VALID_SESSION = "session opened";
+    private int maxAuthTries = 6;
 
     private int numOfSuccessLogins = 0;
     private int numOfFailedAttempts = 0;
-    private int numOfInvalidUsersAttempts = 0;
     private String mostCommonLoginName = "";
     private HashMap<String, LoginAttempt> loginAttemptsRecord = new HashMap<>();
     private DatabaseReader cityReader;
@@ -33,7 +33,7 @@ public class Log
     {
         createDatabases();
         this.parseFile(fileName);
-        //this.MAX_AUTH_TRIES = maxAuthTries;
+        this.maxAuthTries = maxAuthTries;
     }
 
     //TODO: fix extra counts for invalid users that exceed max auth
@@ -120,12 +120,29 @@ public class Log
             if (loginAttemptsRecord.containsKey(userName))
             {
                 LoginAttempt attempt = loginAttemptsRecord.get(userName);
-                attempt.addNewIP(ip, MAX_AUTH_TRIES, false);
+                attempt.addNewIP(ip, maxAuthTries, false);
             }
             else
             {//if new user
                 LoginAttempt attempt = new LoginAttempt (userName, false, cityReader);
-                attempt.addNewIP(ip, MAX_AUTH_TRIES, false);
+                attempt.addNewIP(ip, maxAuthTries, false);
+                loginAttemptsRecord.put(userName, attempt);
+            }
+        }
+        //successful attempts don't seem to include IP address?
+        //should be 6 for user ubuntu
+        else if (line.contains(VALID_SESSION))
+        {
+            String userName = data[10];
+            if (loginAttemptsRecord.containsKey(userName))
+            {
+                LoginAttempt attempt = loginAttemptsRecord.get(userName);
+                attempt.addToSuccessLogins();
+            }
+            else
+            {//if new user
+                LoginAttempt attempt = new LoginAttempt (userName, true, cityReader);
+                attempt.addToSuccessLogins();
                 loginAttemptsRecord.put(userName, attempt);
             }
         }

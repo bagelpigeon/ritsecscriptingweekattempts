@@ -38,7 +38,7 @@ public class LoginAttempt
         }
         if (success)
         {
-            addToSuccessLogins(numOfTries, ip);
+            addToSuccessLogins();
         }
         else
         {
@@ -59,15 +59,16 @@ public class LoginAttempt
         failedLogins += numOfTries;
     }
 
-    public void addToSuccessLogins ( int numOfTries, String ip )
+    public void addToSuccessLogins ( )
     {
+        /*
         for ( int i = 0; i < ipList.size(); i++)
         {
             if (ipList.get(i).getIp().equals(ip))
             {
                 ipList.get(i).addToSuccessLogins();
             }
-        }
+        }*/
         successLogins += 1;
     }
 
