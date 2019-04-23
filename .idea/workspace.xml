@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52eef909-2928-41a8-a5c2-f8ef664c1b1d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth.log" beforeDir="false" afterPath="$PROJECT_DIR$/auth.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logparser/LogParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logparser/LogParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logparser/model/IPAddressLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logparser/model/IPAddressLocation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logparser/model/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logparser/model/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logparser/model/LoginAttempt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logparser/model/LoginAttempt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -97,7 +93,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/logparser/model/Log.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="347">
-              <caret line="143" column="35" lean-forward="true" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
+              <caret line="143" column="35" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,8 +116,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/logparser/model/IPAddressLocation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="90" column="27" selection-start-line="90" selection-start-column="27" selection-end-line="90" selection-end-column="27" />
+            <state relative-caret-position="119">
+              <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -143,9 +139,9 @@
       <find>invalid</find>
       <find>true</find>
       <find>admin</find>
-      <find>root</find>
       <find>getU</find>
       <find>ubuntu</find>
+      <find>root</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,8 +166,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="251" />
-    <option name="y" value="90" />
+    <option name="x" value="372" />
+    <option name="y" value="81" />
     <option name="width" value="1371" />
     <option name="height" value="916" />
   </component>
@@ -266,7 +262,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556054680790" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556054796636" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -355,7 +351,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="251" y="90" width="1371" height="916" extended-state="0" />
+    <frame x="372" y="81" width="1371" height="916" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26468346" />
@@ -367,7 +363,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33248082" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5869565" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -450,7 +446,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/logparser/model/Log.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
-          <caret line="143" column="35" lean-forward="true" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
+          <caret line="143" column="35" selection-start-line="143" selection-start-column="35" selection-end-line="143" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -469,8 +465,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/logparser/model/IPAddressLocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="90" column="27" selection-start-line="90" selection-start-column="27" selection-end-line="90" selection-end-column="27" />
+        <state relative-caret-position="119">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
