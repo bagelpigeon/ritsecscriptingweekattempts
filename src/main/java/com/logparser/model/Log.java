@@ -1,16 +1,18 @@
 package com.logparser.model;
-import com.logparser.model.LoginAttempt;
 import com.maxmind.geoip2.DatabaseReader;
-import com.maxmind.geoip2.model.CityResponse;
 
 import java.io.File;
-import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
+
+/**
+ * This class summarizes a log object.
+ * Author: github.com/bagelpigeon
+ **/
 
 public class Log
 {
@@ -20,7 +22,8 @@ public class Log
     static private String SEPARATOR = " ";
     static private String INVALID_USER = "Invalid user";
     static private String MAX_ATTEMPTS_EXCEEDED = "maximum authentication attempts";
-    static private String VALID_SESSION = "session opened";
+    static private String PUBLIC_KEY_LOGIN = "Accepted publickey";
+    static private String PASSWORD_LOGIN = "Accepted password";
     private int maxAuthTries = 6;
 
     private int numOfSuccessLogins = 0;
@@ -61,6 +64,7 @@ public class Log
         }
     }
 
+    //TODO: need to refactor into various functions
     public void parseLine(String line)
     {
         String[] data = line.split(SEPARATOR);
@@ -79,12 +83,12 @@ public class Log
             if (loginAttemptsRecord.containsKey(userName))
             {
                 LoginAttempt attempt = loginAttemptsRecord.get(userName);
-                attempt.addNewIP(ip, 1, false);
+                attempt.addAttemptFromIP(ip, 1, false);
             }
             else
             {//if new user
                 LoginAttempt attempt = new LoginAttempt (userName, false, cityReader);
-                attempt.addNewIP(ip, 1, false);
+                attempt.addAttemptFromIP(ip, 1, false);
                 loginAttemptsRecord.put(userName, attempt);
             }
         }
@@ -95,7 +99,6 @@ public class Log
 
             //check if its an invalid user
             //TODO: fix up the indexes to be constants
-            //Turn into function too
             if (line.contains("invalid"))
             {
                 userName = data[13];
@@ -120,29 +123,35 @@ public class Log
             if (loginAttemptsRecord.containsKey(userName))
             {
                 LoginAttempt attempt = loginAttemptsRecord.get(userName);
-                attempt.addNewIP(ip, maxAuthTries, false);
+                attempt.addAttemptFromIP(ip, maxAuthTries, false);
             }
             else
             {//if new user
                 LoginAttempt attempt = new LoginAttempt (userName, false, cityReader);
-                attempt.addNewIP(ip, maxAuthTries, false);
+                attempt.addAttemptFromIP(ip, maxAuthTries, false);
                 loginAttemptsRecord.put(userName, attempt);
             }
         }
-        //successful attempts don't seem to include IP address?
-        //should be 6 for user ubuntu
-        else if (line.contains(VALID_SESSION))
+        else if (line.contains(PUBLIC_KEY_LOGIN) || line.contains(PASSWORD_LOGIN))
         {
-            String userName = data[10];
+
+            String userName = data[8];
+            String ip = data[10];
+            if ( ip.equals("from"))
+            {
+                userName = data[9];
+                ip = data[11];
+                System.out.println(line);
+            }
             if (loginAttemptsRecord.containsKey(userName))
             {
                 LoginAttempt attempt = loginAttemptsRecord.get(userName);
-                attempt.addToSuccessLogins();
+                attempt.addAttemptFromIP(ip, maxAuthTries, true);
             }
             else
             {//if new user
                 LoginAttempt attempt = new LoginAttempt (userName, true, cityReader);
-                attempt.addToSuccessLogins();
+                attempt.addAttemptFromIP(ip, maxAuthTries, true);
                 loginAttemptsRecord.put(userName, attempt);
             }
         }
@@ -163,6 +172,11 @@ public class Log
             }
         }
         return mostCommonLoginName;
+    }
+
+    public LoginAttempt getUserRecords ( String userName )
+    {
+        return loginAttemptsRecord.get(userName);
     }
 
     public int getNumOfSuccessLogins ( )

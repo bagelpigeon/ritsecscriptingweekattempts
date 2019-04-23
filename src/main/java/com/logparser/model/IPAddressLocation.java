@@ -5,14 +5,20 @@ import com.maxmind.geoip2.model.CityResponse;
 
 import java.net.InetAddress;
 
+/**
+ * This class summarizes a attempts to authenticate for a particular IP
+ * This class is attached to a single LoginAttempt (username)
+ * Author: github.com/bagelpigeon
+ **/
+
 public class IPAddressLocation
 {
     private int failedLogins = 0;
     private int successLogins = 0;
     private String location;
     private String ip;
-    private String city;
-    private String country;
+    private String city = "unknown";
+    private String country = "unknown";
     private DatabaseReader cityReader;
 
     public IPAddressLocation (String ipAddress, DatabaseReader cityReader)
@@ -80,20 +86,12 @@ public class IPAddressLocation
             InetAddress ipAddress = InetAddress.getByName(ip);
             CityResponse response = cityReader.city(ipAddress);
             String cityName = response.getCity().getName();
-            if (cityName == null)
-            {
-                city = "unknown";
-            }
-            else
+            if (cityName != null)
             {
                 city = cityName;
             }
             String countryName = response.getCountry().getName();
-            if (countryName == null)
-            {
-                country = "unknown";
-            }
-            else
+            if (countryName != null)
             {
                 country = countryName;
             }
@@ -104,8 +102,10 @@ public class IPAddressLocation
         }
         catch (Exception e)
         {
+            //Commented out, since some ips are not in the database, an expected error, but including this
+            // exception will spam the log
             //e.printStackTrace();
-            System.out.println("Ip: " + ip + " is not in database.");
+            //System.out.println("Ip: " + ip + " is not in database.");
         }
     }
 

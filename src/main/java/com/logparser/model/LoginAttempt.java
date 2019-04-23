@@ -1,12 +1,13 @@
 package com.logparser.model;
-import java.io.IOException;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import com.maxmind.geoip2.DatabaseReader;
-import com.maxmind.geoip2.exception.GeoIp2Exception;
-import com.maxmind.geoip2.model.CityResponse;
-import com.maxmind.geoip2.record.City;
-import com.maxmind.geoip2.record.Country;
+
+/**
+ * This class summarizes a attempts to authenticate for a particular username
+ * This contains a list of IPs and their associated location that attempted to authenticate
+ * with this username.
+ * Author: github.com/bagelpigeon
+ **/
 
 public class LoginAttempt
 {
@@ -29,7 +30,7 @@ public class LoginAttempt
         this.validUser = success;
     }
 
-    public void addNewIP ( String ip, int numOfTries, boolean success )
+    public void addAttemptFromIP(String ip, int numOfTries, boolean success )
     {
         IPAddressLocation ipObj = new IPAddressLocation(ip, cityReader);
         if (!this.ipList.contains(ipObj))
@@ -38,7 +39,7 @@ public class LoginAttempt
         }
         if (success)
         {
-            addToSuccessLogins();
+            addToSuccessLogins(ip);
         }
         else
         {
@@ -59,16 +60,15 @@ public class LoginAttempt
         failedLogins += numOfTries;
     }
 
-    public void addToSuccessLogins ( )
+    public void addToSuccessLogins ( String ip)
     {
-        /*
         for ( int i = 0; i < ipList.size(); i++)
         {
             if (ipList.get(i).getIp().equals(ip))
             {
                 ipList.get(i).addToSuccessLogins();
             }
-        }*/
+        }
         successLogins += 1;
     }
 
